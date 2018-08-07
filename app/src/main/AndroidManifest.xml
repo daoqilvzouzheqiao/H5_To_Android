@@ -20,9 +20,9 @@
                 <category android:name="android.intent.category.BROWSABLE"/>
 
                 <data
-                    android:host="ehr"
-                    android:pathPrefix="/demo"
-                    android:scheme="spd"/>
+                    android:host="host"
+                    android:pathPrefix="/pathPrefix"
+                    android:scheme="scheme"/>
             </intent-filter>
         </activity>
 

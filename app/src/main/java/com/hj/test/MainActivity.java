@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         if(!App.isLogin()){//没有登录就跳转到登录界面
-            App.setId(123);//缓存需要跳转的页面
+            App.setId(123);//缓存需要跳转的页面,模拟id和OtherActivity对应
             finish();
             startActivity(new Intent(this,LoginActivity.class));
         }else{
@@ -23,6 +23,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Uri uri = getIntent().getData();
+        if(uri!=null){
+            String id = uri.getQueryParameter("id");
+            startActivity(new Intent(this,OtherActivity.class));
+            App.setId(-1);//跳转到页面后，将缓存删掉
+        }
+
     }
 
     /**
@@ -37,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         if(uri!=null){
             String id = uri.getQueryParameter("id");
             startActivity(new Intent(this,OtherActivity.class));
+            App.setId(-1);//跳转到页面后，将缓存删掉
         }
     }
 
